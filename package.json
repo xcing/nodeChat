@@ -1,0 +1,14 @@
+{
+  "name": "node-chat",
+  "version": "0.0.1",
+  "description": "node chat",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongodb": "^3.0.5",
+    "nodemon": "^1.17.2",
+    "socket.io": "^1.7.3"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
