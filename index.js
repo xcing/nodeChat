@@ -1,16 +1,15 @@
 var app = require('express')();
-var http = require('http').Server(app);// Retrieve
+var http = require('http').Server(app);
 var MongoClient = require('mongodb').MongoClient;
 app.set('view engine', 'ejs');
 
-// Connect to the db
 MongoClient.connect("mongodb://localhost:27017", function(err, database) {
   	if(err) { return console.dir(err); }
 
   	const nodeChatDb = database.db('nodeChat');
     var historyCollection = nodeChatDb.collection('history');
 
-    historyCollection.find({}).sort({_id:-1}).limit(5).toArray(function (e, historyData) {
+    historyCollection.find({}).sort({_id:-1}).limit(100).toArray(function (e, historyData) {
     	var io = require('socket.io')(http);
 		var port = 3000;
 
@@ -30,8 +29,3 @@ MongoClient.connect("mongodb://localhost:27017", function(err, database) {
 		});
     });
 });
-
-
-// query last 100
-// refactor code
-// config for run db to easy
