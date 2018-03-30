@@ -29,14 +29,15 @@
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
     $(function () {
-        let name = prompt("Please enter your display name:", "YourDisplayName");
+        const name = prompt("Please enter your display name:", "YourDisplayName");
 
-        let socket = io();
+        const socket = io();
         $('form').submit(function(){
             socket.emit('chat message', name+ ": " +$('#message').val());
             $('#message').val('');
             return false;
         });
+
         socket.on('chat message', function(msg){
             $('#chatRoom').append($('<li>').text(msg));
             window.scrollTo(0, document.body.scrollHeight);
